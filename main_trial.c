@@ -24,7 +24,7 @@
 #define STYLE_BOLD      "\033[1m"
 #define STYLE_UNDERLINE "\033[4m"
 
-typedef struct{
+typedef struct {
     int number;
     char question[256];
     char option_a[64];
@@ -35,7 +35,7 @@ typedef struct{
     char incorrect_response[256];
 } Question;
 
-typedef struct{
+typedef struct {
     int score;
     bool completed;
     int attempts;
@@ -237,7 +237,7 @@ void display_outro(bool success, int score) {
         printf("\n\n" COLOR_BRIGHT_MAGENTA STYLE_BOLD);
         printf("|==========================================================|\n");
         printf("|                    BADGE OF SHADOWS                      |\n");
-        printf("|                Score: %d/5 - VICTORY!                    |\n", score);
+        printf("|                 Score: %d/5 - VICTORY!                    |\n", score);
         printf("|==========================================================|\n");
         printf(COLOR_RESET);
     } else {
@@ -251,7 +251,7 @@ void display_outro(bool success, int score) {
         printf("\n\n" COLOR_RED STYLE_BOLD);
         printf("|==========================================================|\n");
         printf("|                    TRIAL FAILED                          |\n");
-        printf("|                Score: %d/5 - DEFEAT                      |\n", score);
+        printf("|                 Score: %d/5 - DEFEAT                      |\n", score);
         printf("|==========================================================|\n");
         printf(COLOR_RESET);
     }
@@ -332,13 +332,13 @@ void start_trial_of_death() {
 
     printf("\n" COLOR_BRIGHT_WHITE);
     printf("|========================================================|\n");
-    printf("|        Trial Completed!                                |\n");
-    printf("|        Final Score: %d/5                               |\n", score);
+    printf("|                Trial Completed!                        |\n");
+    printf("|                Final Score: %d/5                        |\n", score);
     printf("|========================================================|\n");
     printf(COLOR_RESET);
 }
 
-int main() {
+int main(){
     start_trial_of_death();
     return 0;
 }
