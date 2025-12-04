@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <stdbool.h>
 
-// ANSI color and style codes
 #define COLOR_RESET   "\033[0m"
 #define COLOR_RED     "\033[31m"
 #define COLOR_GREEN   "\033[32m"
@@ -25,26 +24,23 @@
 #define STYLE_BOLD      "\033[1m"
 #define STYLE_UNDERLINE "\033[4m"
 
-// Question structure
-typedef struct {
+typedef struct{
     int number;
     char question[256];
     char option_a[64];
     char option_b[64];
     char hint[128];
-    char correct_answer; // 'A' or 'B'
+    char correct_answer;
     char correct_response[256];
     char incorrect_response[256];
 } Question;
 
-// Game state structure
-typedef struct {
+typedef struct{
     int score;
     bool completed;
     int attempts;
 } GameState;
 
-// Questions data
 Question questions[5] = {
     {
         1,
@@ -98,7 +94,6 @@ Question questions[5] = {
     }
 };
 
-// Function prototypes
 void clear_screen();
 void typewriter_effect(const char* text, int delay_ms);
 void print_colored(const char* text, const char* color, int style);
@@ -114,7 +109,6 @@ char get_valid_input();
 int run_trial();
 void start_trial_of_death();
 
-// Display functions
 void clear_screen() {
     printf("\033[2J\033[1;1H");
 }
@@ -125,9 +119,8 @@ void typewriter_effect(const char* text, int delay_ms) {
         fflush(stdout);
         usleep(delay_ms * 1000);
 
-        // Pause for dramatic effect on punctuation
         if (text[i] == '.' || text[i] == '!' || text[i] == '?') {
-            usleep(500000); // 500ms pause
+            usleep(500000);
         }
     }
     printf("\n");
@@ -189,7 +182,7 @@ void display_intro() {
     typewriter_effect("The forest falls silent. A crow cries once, and your trial begins...", 50);
     printf(COLOR_RESET "\n\n");
 
-    usleep(2000000); // 2 second pause
+    usleep(2000000);
 }
 
 void display_question(int q_num, const char* question, const char* option_a,
@@ -268,7 +261,6 @@ void display_outro(bool success, int score) {
     getchar();
 }
 
-// Game logic functions
 char get_valid_input() {
     char input;
     char buffer[10];
@@ -346,7 +338,6 @@ void start_trial_of_death() {
     printf(COLOR_RESET);
 }
 
-// Main function
 int main() {
     start_trial_of_death();
     return 0;
